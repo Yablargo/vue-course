@@ -1,5 +1,16 @@
 # 1. Getting started
 
+Why Vue?
+
+Vue grew in popularity from 2016 to 2018. (state of js)
+
+The best thing about Vue is the low barrier to entry.
+
+### Vue vs angular
+
+- Variety of different structures(Injectables, Components, Pipes, Modules etc.) makes it a bit harder to learn in comparison with React and Vue.js, which have an only “Component” in mind.
+- Relatively slower performance, according to different benchmarks.
+
 ## 1.1 Creating your first application
 
 Use [https://unpkg.com/vue@2.6.12/dist/vue.js](https://unpkg.com/vue@2) to use Vue 2.
