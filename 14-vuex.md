@@ -35,3 +35,38 @@ Notes on spread operator: https://jsfiddle.net/lss/us4zpvLd/
 Changing state outside of Vuex store is not recommended. This can cause the code hard to maintain.
 
 Use mutations to change Vuex states.
+
+Use `mapMutations`.
+
+Mutations only run synchronous.
+
+To run async stuff, use Actions.
+
+Let's say we run the counter with a delay of 1 second.
+
+Best practice: use mutation to mutate state. Actions to run async functions and commit mutations.
+
+## 14.4 Actions
+
+Use mapActions.
+
+Pass payload to actions.
+
+If want to pass more than 1 payload, use an object.
+
+## 14.5 Use v-model with Vuex
+
+v-model alone won't work.
+
+You can use :value & @input, but it's tedious.
+
+You can create a getter and setter for computed properties.
+
+This is rarely used in computed because we usually only get in computed properties.
+
+Some people will find it safer to use the :value and @input.
+
+## 14.6 Better folder structure
+
+- Use modules
+- Use namespace to avoid duplicate name
