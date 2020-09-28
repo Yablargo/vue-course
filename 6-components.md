@@ -15,7 +15,7 @@ Only Vue instance can use data as an object.
 
 Refer to git.
 
-## 6.3 Naming component tagss
+## 6.3 Naming component tags
 
 When including components, you can name it using camel case or dash.
 

@@ -114,3 +114,9 @@ One important difference between transition and transition-group.
 Try to remove 'key'. The list will not work because we need to let Vue to know which element is which.
 
 <transition-group> gives us a new class: `.slide-move`. This is attached to element that needs to change its place because a new element in added/deleted.
+
+## 13.10 Other options animations
+
+Anime.js https://codepen.io/tomrishworth/pen/VbbMgV
+
+Vuetify built-in

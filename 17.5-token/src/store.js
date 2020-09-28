@@ -1,0 +1,92 @@
+import Vue from "vue";
+import Vuex from "vuex";
+import axios from "./axios-auth";
+import globalAxios from "axios";
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  state: {
+    idToken: null,
+    userId: null,
+    user: null,
+  },
+  mutations: {
+    authUser(state, userData) {
+      state.idToken = userData.token;
+      state.userId = userData.userId;
+    },
+    storeUser(state, user) {
+      state.user = user;
+    },
+  },
+  actions: {
+    async signup({ commit, dispatch }, authData) {
+      // user.json to target a valid endpoint in Firebase
+      const res = await axios.post(
+        `/accounts:signUp?key=AIzaSyDmjWY3RN6zOWh5tek8-yaVL0eic09lz28`,
+        {
+          email: authData.email,
+          password: authData.password,
+          returnSecureToken: true,
+        }
+      );
+
+      commit("authUser", { token: res.data.idToken, userId: res.data.localId });
+      // we need to fire another action to store in firebase database, not use the auth DB.
+      await dispatch("storeUser", authData);
+
+      console.log(res);
+    },
+    async login({ commit }, authData) {
+      const res = await axios.post(
+        `/accounts:signInWithPassword?key=AIzaSyDmjWY3RN6zOWh5tek8-yaVL0eic09lz28`,
+        {
+          email: authData.email,
+          password: authData.password,
+          returnSecureToken: true,
+        }
+      );
+      commit("authUser", { token: res.data.idToken, userId: res.data.localId });
+      console.log(res);
+    },
+    async storeUser({ state }, userData) {
+      // don't run if there's no idToken
+      if (!state.idToken) {
+        return;
+      }
+      const res = await globalAxios.post(
+        `/users.json?auth=${state.idToken}`,
+        userData
+      );
+      console.log(res);
+    },
+    async fetchUser({ commit, state }) {
+      // don't run if there's no idToken
+      if (!state.idToken) {
+        return;
+      }
+      const res = await globalAxios.get(`/users.json?auth=${state.idToken}`);
+      console.log(res);
+
+      const data = res.data;
+
+      const users = [];
+      for (let key in data) {
+        const user = data[key];
+        user.id = key;
+        users.push(user);
+      }
+      console.log(users);
+      commit("storeUser", users[0]);
+    },
+  },
+  getters: {
+    user(state) {
+      return state.user;
+    },
+    isAuthenticated(state) {
+      return state.idToken !== null;
+    },
+  },
+});

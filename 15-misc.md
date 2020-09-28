@@ -13,10 +13,3 @@ Use auth0
 ## 15.3 Vue 3 migration guide
 
 Vue 3 is still in phased released process. The stable Vue 3 is out, but some parts are still in phased release, e.g. router, vuex and devtools.
-
-### What changed?
-
-- Vue apps are created with `createApp()`
-- 'data' must always be a method
-- Transition: v-enter is now v-enter-from
-- vue-router are now created with createRouter()
