@@ -1,41 +1,34 @@
 <template>
   <div class="container">
     <!-- refactor into Header.vue component -->
-    <div class="row">
-      <div class="col-xs-12">
-        <header>
-          <h1>Server Status</h1>
-        </header>
-      </div>
-    </div>
+    <header />
     <hr />
     <div class="row">
       <!-- refactor into Servers.vue component -->
-      <div class="col-xs-12 col-sm-6">
-        <ul class="list-group">
-          <li class="list-group-item" v-for="index in 5">
-            Server #{{ index }}
-          </li>
-        </ul>
-      </div>
+
+      <servers />
 
       <!-- refactor into ServerDetails.vue component -->
-      <div class="col-xs-12 col-sm-6">
-        <p>Server Details are currently not updated</p>
-      </div>
+      <serverdetails />
     </div>
     <hr />
     <!-- refactor into Footer.vue component -->
-    <div class="row">
-      <div class="col-xs-12">
-        <footer>
-          <p>All Servers are managed here</p>
-        </footer>
-      </div>
-    </div>
+    <footer />
   </div>
 </template>
 
-<script></script>
+
+<script>
+import footer from "./components/Footer.vue";
+import header from "./components/Header.vue";
+import serverdetails from "./components/ServerDetails.vue";
+import servers from "./components/Servers.vue";
+
+export default {
+  name: "App",
+  components: { footer, header, serverdetails, servers },
+};
+</script>
+
 
 <style></style>
