@@ -3,17 +3,28 @@
     <!-- Use @input and a 'value' prop to make a custom input -->
     <div class="form-group">
       <label>First Name</label>
-      <input type="text" class="form-control" />
+      <input
+        :value="firstName"
+        v-on:input="nameChanged(true, $event)"
+        type="text"
+        class="form-control"
+      />
     </div>
     <div class="form-group">
       <label>Last Name</label>
-      <input type="text" class="form-control" />
+      <input
+        :value="lastName"
+        v-on:input="nameChanged(false, $event)"
+        type="text"
+        class="form-control"
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ["value"],
   methods: {
     nameChanged(isFirst, event) {
       let name = "";
@@ -23,6 +34,7 @@ export default {
         name = this.firstName + " " + event.target.value;
       }
       // What should we do here to update the prop?
+      this.$emit("input", name);
     },
   },
   computed: {
