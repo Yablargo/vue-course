@@ -5,18 +5,19 @@
         <h1>Filters & Mixins</h1>
         <!-- Exercise 1) -->
         <!-- Build a local Filter which reverses the Text it is applied on -->
-        <p>{{ firstText }}</p>
+        <p>{{ firstText  | reverse }}</p>
 
         <!-- Exercise 2 -->
         <!-- Build a global Filter which counts the length of a word and it appends it -->
         <!-- Like this: "Test" => Gets Filtered to => "Test (4)" -->
-        <p>{{ secondText }}</p>
+        <p>{{ secondText | wordcount }}</p>
 
         <!-- Exercise 3 -->
         <!-- Do the same as in Exercises 1 with Computed Property -->
-
+      <p>{{reversed}}</p>
         <!-- Exercise 4 -->
         <!-- Do the same as in Exercises 2 with computed property stored in Mixin -->
+        <p>{{counted}}</p>
       </div>
     </div>
   </div>
@@ -24,6 +25,28 @@
 
 <script>
 export default {
+  computed:
+  {
+    reversed: function(){
+      return this.firstText.split("").reverse().join("");
+    },
+    counted: function()
+    {
+      return `${this.secondText} (${this.secondText.length})`;
+    }
+  },
+
+  filters: 
+  {
+    reverse: function(value)
+    {
+      return value.split("").reverse().join("");
+    },
+    wordcount: function(value)
+    {
+      return `${value} (${value.length})`;
+    }    
+  },
   data() {
     return {
       firstText: "Some Text",
