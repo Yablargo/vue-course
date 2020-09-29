@@ -19,14 +19,9 @@ export default {
         let currencyVal = el.innerText;
         if(b.value.round){
             currencyVal = Math.round(currencyVal);
-        }
-        
-        
+        }                
         el.innerText = `${b.value.prefix} ${currencyVal}`;
 
-
-        console.log(b);
-        
         
       }
     }
