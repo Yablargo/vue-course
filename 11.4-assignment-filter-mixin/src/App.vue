@@ -47,10 +47,7 @@ export default {
     {
       return value.split("").reverse().join("");
     },
-    wordcount: function(value)
-    {
-      return `${value} (${value.length})`;
-    }    
+  
   },
   data() {
     return {
