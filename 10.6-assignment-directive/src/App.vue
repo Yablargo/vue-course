@@ -12,6 +12,26 @@
 
 <script>
 export default {
+  directives: {
+    currency: {
+      bind(el, b)
+      {
+        let currencyVal = el.innerText;
+        if(b.value.round){
+            currencyVal = Math.round(currencyVal);
+        }
+        
+        
+        el.innerText = `${b.value.prefix} ${currencyVal}`;
+
+
+        console.log(b);
+        
+        
+      }
+    }
+
+  }
   // create a custom directive for v-currency
 };
 </script>
