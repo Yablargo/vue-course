@@ -24,16 +24,21 @@
 </template>
 
 <script>
+var myMixin = {
+  computed: {
+   counted: function()
+    {
+      return `${this.secondText} (${this.secondText.length})`;
+    }
+  }
+}
 export default {
+  mixins: [myMixin],
   computed:
   {
     reversed: function(){
       return this.firstText.split("").reverse().join("");
-    },
-    counted: function()
-    {
-      return `${this.secondText} (${this.secondText.length})`;
-    }
+    },   
   },
 
   filters: 
