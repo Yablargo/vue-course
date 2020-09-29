@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- 1. Show the form if not submitted. If submitted, show 'Your Data' -->
-    <form>
+    <form v-if="!submitted" v-on:submit.prevent="submitted = true">
       <div class="row">
         <div
           class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
@@ -13,38 +13,39 @@
 
           <div class="form-group">
             <label>Mail</label>
-            <input type="text" class="form-control" />
+            <input v-model="email" type="text" class="form-control" />
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" />
+            <input v-model="password" type="password" class="form-control" />
           </div>
           <div class="form-group">
-            <label> <input type="radio" value="Yes" /> Yes </label>
-            <label> <input type="radio" value="No" /> No </label>
+            <label>
+              <input v-model="storeData" type="radio" value="Yes" /> Yes
+            </label>
+            <label>
+              <input v-model="storeData" type="radio" value="No" /> No
+            </label>
           </div>
 
           <!-- 3. Submit the form to change the 'submitted' data -->
-          <button type="submit" class="btn btn-primary">
-            Submit the Form
-          </button>
+          <button type="submit" class="btn btn-primary">Submit the Form</button>
         </div>
       </div>
+      <hr />
     </form>
 
-    <hr />
-
-    <div class="row">
+    <div v-else class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4>Your Data</h4>
           </div>
           <div class="panel-body">
-            <p>Full Name:</p>
-            <p>Mail:</p>
-            <p>Password:</p>
-            <p>Store in Database?:</p>
+            <p>Full Name: {{ fullName }}</p>
+            <p>Mail: {{ email }}</p>
+            <p>Password: {{ password }}</p>
+            <p>Store in Database?: {{ storeData }}</p>
           </div>
         </div>
       </div>
